@@ -8,6 +8,26 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, placeholder: 'First and Last Name' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username, placeholder: '@username' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location, placeholder: 'New Orleans, Louisiana' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bio %><br>
+    <%= f.trix_editor :bio, placeholder: 'Your Bio Here' %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
