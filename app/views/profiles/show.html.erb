@@ -1,5 +1,12 @@
-<h1><%= @user.username %>'s Profile</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center"><%= @user.username %>'s Profile</h1>
 
-<% @user.tweets.each do |tweet| %>
-  <%= tweet.message %><br>
-<% end %>
+      <h3>Tweets</h3>
+      <% @user.tweets.each do |tweet| %>
+        <%= link_to tweet.message, tweet %><br>
+      <% end %>
+    </div>
+  </div>
+</div>
