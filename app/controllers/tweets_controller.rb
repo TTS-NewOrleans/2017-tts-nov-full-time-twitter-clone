@@ -39,6 +39,15 @@ class TweetsController < ApplicationController
     # @tweet = Tweet.find(params[:id])
   end
 
+  def destroy
+    if @tweet.destroy
+      redirect_to tweets_url, notice: 'Tweet destroyed.'
+    else
+      flash.now[:alert] = 'Something went wrong. Your tweet escaped destruction. Try again.'
+    end
+
+  end
+
   private
 
   def tweet_params
