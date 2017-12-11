@@ -1,2 +1,10 @@
-<h1>Tweets#show</h1>
-<p>Find me in app/views/tweets/show.html.erb</p>
+<p>
+  <strong>Message:</strong> <%= sanitize(@tweet.message) %>
+</p>
+
+<p>
+  <strong>User: </strong> <%= @tweet.user.username if @tweet.user %>
+</p>
+
+<%= link_to 'Edit', edit_tweet_path(@tweet), class: "btn btn-secondary" %>
+<%= link_to 'See All The Tweets', tweets_path, class: "btn btn-secondary" %>
