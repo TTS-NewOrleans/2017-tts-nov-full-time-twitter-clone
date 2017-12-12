@@ -1,12 +1,48 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h1 class="text-center"><%= @user.username %>'s Profile</h1>
+    <div class="col-4">
+      <h3><%= @user.name %></h3>
+      <h5><%= @user.username %></h5>
+      <h5><p><%= sanitize(@user.bio) %></p></h5>
+      <h5><%= @user.location %></h5>
+      <h5>Joined on <%= @user.created_at.stamp("November 1, 1804") %></h5>
 
-      <h3>Tweets</h3>
-      <% @user.tweets.each do |tweet| %>
-        <%= link_to tweet.message, tweet %><br>
+      <% if @user.id != current_user.id %>
+        <% if current_user.friends.include?(@user) %>
+          <%= link_to 'Unfollow', relationship_path(current_user.relationships.find_by_friend_id(@user), friend_id: @user), method: :delete, class: 'btn btn-secondary mb-3' %>
+        <% else %>
+          <%= link_to 'Follow', relationships_path(friend_id: @user), method: :post, class: "btn btn-secondary mb-3" %>
+        <% end %>
       <% end %>
+      <br>
+
+      <%= @user.relationships.count %> Following
+      <br>
+      <% @user.relationships.each do |relationship| %>
+        <%= link_to relationship.friend.name, profile_path(relationship.friend) %> <br>
+      <% end %>
+
+      <br><br>
+
+      <%= pluralize(@user.inverse_relationships.count, "Follower") %>
+      <br>
+      <% @user.inverse_friends.each do |friend| %>
+        <%= link_to friend.name, profile_path(friend) %><br>
+      <% end %>
+    </div>
+
+    <div class="col-7">
+      <div class="card">
+        <% @user.tweets.each do |tweet| %>
+          <div class="card-body">
+            <strong><%= tweet.user.username %> </strong><small>tweeted <%= time_ago_in_words(tweet.created_at) %></small>
+
+            <br><br>
+
+            <%= tweet.message %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
