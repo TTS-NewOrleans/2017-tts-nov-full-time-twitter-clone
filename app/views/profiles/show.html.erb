@@ -3,6 +3,8 @@
     <div class="col">
       <h1 class="text-center"><%= @user.username %>'s Profile</h1>
 
+      <%= link_to 'Follow', relationships_path(friend_id: @user), method: :post %>
+
       <h3>Tweets</h3>
       <% @user.tweets.each do |tweet| %>
         <%= link_to tweet.message, tweet %><br>
