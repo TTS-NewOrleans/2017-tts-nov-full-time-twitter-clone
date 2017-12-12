@@ -5,6 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tweets, dependent: :destroy
+  has_many :relationships
+  has_many :friends, through: :relationships
+
+  has_many :inverse_relationships, class_name: "Relationship"
+  has_many :inverse_friends, through: :inverse_relationships, source: :user
 
   validates :username, presence: true, uniqueness: true
 end
