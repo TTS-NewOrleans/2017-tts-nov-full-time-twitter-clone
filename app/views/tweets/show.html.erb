@@ -1,10 +1,16 @@
-<p>
-  <strong>Message:</strong> <%= sanitize(@tweet.message) %>
-</p>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-6 text-center">
+      <p>
+        <strong>Message:</strong> <%= sanitize(@tweet.message) %>
+      </p>
 
-<p>
-  <strong>User: </strong> <%= @tweet.user.username if @tweet.user %>
-</p>
+      <p>
+        <strong>User: </strong> <%= @tweet.user.username if @tweet.user %>
+      </p>
 
-<%= link_to 'Edit', edit_tweet_path(@tweet), class: "btn btn-secondary" %>
-<%= link_to 'See All The Tweets', tweets_path, class: "btn btn-secondary" %>
+      <%= link_to 'Edit', edit_tweet_path(@tweet), class: "btn btn-secondary" %>
+      <%= link_to 'See All The Tweets', tweets_path, class: "btn btn-secondary" %>      
+    </div>
+  </div>
+</div>
