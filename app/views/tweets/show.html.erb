@@ -9,8 +9,10 @@
         <strong>User: </strong> <%= @tweet.user.username if @tweet.user %>
       </p>
 
+      <%= render 'shared/likes' %>
+      <br><br>
       <%= link_to 'Edit', edit_tweet_path(@tweet), class: "btn btn-secondary" %>
-      <%= link_to 'See All The Tweets', tweets_path, class: "btn btn-secondary" %>      
+      <%= link_to 'See All The Tweets', tweets_path, class: "btn btn-secondary" %>
     </div>
   </div>
 </div>
